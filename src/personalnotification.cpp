@@ -158,6 +158,9 @@ void PersonalNotification::publishNotification()
         connect(m_notification, SIGNAL(closed(uint)), SLOT(onClosed(uint)));
 
         m_notification->setTimestamp(QDateTime::currentDateTimeUtc());
+    } else {
+        m_notification->setHintValue("x-nemo-origin-package", "dummy");
+        m_notification->setHintValue("suppress-sound", true);
     }
 
     m_notification->setAppName(groupName(collection()));
